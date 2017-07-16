@@ -5,7 +5,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Activation
 from keras.layers import LSTM
-import keras
+import math
 
 
 # TODO: fill out the function below that transforms the input series 
@@ -42,9 +42,10 @@ def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
-    for i in range(0, (len(text) - window_size)//step_size):
+    #for i in range(0, (len(text) - window_size - 1)//step_size):
+    for i in range(0, (math.ceil((len(text)- window_size)/step_size))):
         inputs.append(text[i*step_size:i*step_size + window_size])
-        outputs.append(text[i*step_size + window_size + 1])
+        outputs.append(text[i*step_size + window_size])
     return inputs,outputs
 
 # TODO build the required RNN model: 
