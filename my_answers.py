@@ -42,9 +42,9 @@ def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
-    for i in range(0, len(text)//step_size - window_size//step_size - 1):
+    for i in range(0, (len(text) - window_size)//step_size):
         inputs.append(text[i*step_size:i*step_size + window_size])
-        outputs.append(text[i*step_size + window_size:i*step_size + window_size + 1])
+        outputs.append(text[i*step_size + window_size + 1])
     return inputs,outputs
 
 # TODO build the required RNN model: 
